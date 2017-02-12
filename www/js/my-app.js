@@ -76,7 +76,7 @@ var mainView = myApp.addView('.view-main', {
 $$(document).on('deviceready', function deviceIsReady() {
     console.log('Device is ready!');
     /**
-     *  PhoneGap Day Essentials Workshop Lesson
+     *  PhoneGap Day Supercharge Workshop Lesson
      *  - Detect Offline
      */ 
     // Check the current connection state
@@ -96,7 +96,7 @@ $$(document).on('deviceready', function deviceIsReady() {
 });
 
 /**
- *  PhoneGap Day Essentials Workshop 
+ *  PhoneGap Day Supercharge Workshop 
  *  Handle device coming back online
  */
 function onOnline() {
@@ -110,7 +110,7 @@ function onOnline() {
 }
 
 /**
- *  PhoneGap Day Essentials Workshop
+ *  PhoneGap Day Supercharge Workshop
  *  Handle device going offline
  */
 function onOffline() {
@@ -337,7 +337,7 @@ function addOrRemoveFavorite(e) {
   }
 }
 /**
- *  PhoneGap Day Essentials Workshop 
+ *  PhoneGap Day Supercharge Workshop 
  *  
  *  When Results Page Initializes, add the init code 
  *  for the searchbar component and setup the click handler
