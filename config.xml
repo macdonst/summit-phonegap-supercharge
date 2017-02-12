@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.adobe.phonegap.startrack.plus" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Star Plus</name>
+<widget id="org.startrack.pgdayeu" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Digital Marketing Summit PhoneGap Star Track</name>
     <description>
-        A basic Framework7 Media App for PhoneGap.
+        An enhanced version of the PhoneGap Star Track app used for Digital Marketing Summit
+        PhoneGap workshop. Adds search filter, swipeouts, social sharing and offline detection.
     </description>
-    <author email="tommy@devgeeks.org" href="http://phonegap.com">
+    <author email="holly@devgirl.org" href="http://phonegap.com">
         Adobe PhoneGap Team
     </author>
     <content src="index.html" />
@@ -15,7 +16,6 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon src="icon.png" />
     <platform name="windows">
         <preference name="windows-target-version" value="10.0" />
     </platform>
@@ -91,12 +91,13 @@
     </platform>
     <preference name="DisallowOverscroll" value="true" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
-    <plugin name="cordova-plugin-console" spec="~1.0.3" />
-    <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="cordova-plugin-media" spec="~2.3.0" />
+    <plugin name="cordova-plugin-console" spec="~1.0.1" />
+    <plugin name="cordova-plugin-media" spec="~2.2.0" />
     <plugin name="cordova-plugin-splashscreen" spec="~3.1.0" />
-    <plugin name="cordova-plugin-network-information" spec="~1.2.1" />
-    <plugin name="cordova-plugin-x-socialsharing" spec="~5.0.12" />
     <preference name="FadeSplashScreenDuration" value="300" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="~5.0.12" />
+    <plugin name="cordova-plugin-network-information" spec="~1.2.1" />
     <preference name="phonegap-version" value="cli-6.1.0" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
+
 </widget>

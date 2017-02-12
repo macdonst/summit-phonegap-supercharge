@@ -74,46 +74,54 @@ var mainView = myApp.addView('.view-main', {
 
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function deviceIsReady() {
-  console.log('Device is ready!');
-  if (navigator.connection && navigator.connection.type == Connection.NONE) {
-      $$('.fa-wifi').addClass('color-gray');
+    console.log('Device is ready!');
+    /**
+     *  PhoneGap Day Essentials Workshop Lesson
+     *  - Detect Offline
+     */ 
+    // Check the current connection state
+    if (navigator.connection && navigator.connection.type == Connection.NONE) {
+        $$('.fa-wifi').addClass('color-gray');     
     }
     else {
-      // It's connected, set a flag and icon colors
-      offline = false;
-      if (isIos) $$('.fa-wifi').addClass('color-green');
-      else $$('.fa-wifi').addClass('color-white');
+        offline = false;
+        if (isIos) $$('.fa-wifi').addClass('color-green');
+        else $$('.fa-wifi').addClass('color-white');
     }
-
-    // Add a listener to detect a change in the connection from online to offline and vice versa
+    // Add listeners to detect a change in the connection from connected to offline
+    // and offline to online
     document.addEventListener("offline", onOffline, false);
     document.addEventListener("online", onOnline, false);
+    console.log("Is offline at deviceready? " + offline)  
 });
 
-function onOffline() {
-    offline = true;
-    myApp.addNotification({
-       title: 'Connection Status',
-       message: 'A previously connected device has gone offline.',
-       hold: 2000
-    });
-    if (isIos) $$('.fa-wifi').removeClass('color-green').addClass('color-gray');
-       else $$('.fa-wifi').removeClass('color-white').addClass('color-gray');
-}
-
+/**
+ *  PhoneGap Day Essentials Workshop 
+ *  Handle device coming back online
+ */
 function onOnline() {
-    // Show a toast notification to indicate the change
     myApp.addNotification({
         title: 'Connection Status',
-        message: 'A previously connected device has come back online',
-        hold: 2000
+        message: 'A previously connected device has come back online'
     });
-    // Set the wifi icon colors to reflect the change
     if (isIos) $$('.fa-wifi').removeClass('color-gray').addClass('color-green');
-    else $$('.fa-wifi').removeClass('color-gray').addClass('color-white');
+    else $$('.fa-wifi').removeClass('color-gray').addClass('color-white');    
     offline = false;
 }
 
+/**
+ *  PhoneGap Day Essentials Workshop
+ *  Handle device going offline
+ */
+function onOffline() {
+   offline = true;
+   myApp.addNotification({
+        title: 'Connection Status',
+        message: 'A previously connected device has gone offline.'
+   });
+   if (isIos) $$('.fa-wifi').removeClass('color-green').addClass('color-gray');
+   else $$('.fa-wifi').removeClass('color-white').addClass('color-gray');            
+}
 
 $$(document).on('click', '.panel .search-link', function searchLink() {
   // Only change route if not already on the index
@@ -131,6 +139,7 @@ $$(document).on('click', '.panel .search-link', function searchLink() {
 $$(document).on('click', '.panel .favorites-link', function searchLink() {
   // @TODO fetch the favorites (if any) from localStorage
   var favorites = JSON.parse(localStorage.getItem('favorites'));
+  console.log(favorites);
   mainView.router.load({
     template: myApp.templates.favorites,
     animatePages: false,
@@ -171,6 +180,7 @@ function searchSubmit(e) {
     success: function searchSuccess(resp) {
       resp.tracks.count = resp.tracks.items.length === 25 ? "25 (max)" : resp.tracks.items.length;
       myApp.hidePreloader();
+      localStorage.setItem('lastResults', JSON.stringify(resp.tracks));
       mainView.router.load({
         template: myApp.templates.results,
         context: {
@@ -197,10 +207,10 @@ $$(document).on('submit', '#search', searchSubmit);
 var mediaPreview = null;
 var mediaTimer = null;
 
-function playbackControlsClickHandler(e) {
+function playbackControlsClickHandler(e) {    
   var buttonTarget = $$(e.target);
   if (buttonTarget.hasClass('play')) {
-    monitorMediaPreviewCurrentPosition(mediaPreview);
+    monitorMediaPreviewCurrentPosition(mediaPreview);    
     mediaPreview.play();
     setPlaybackControlsStatus('pending');
     return;
@@ -277,7 +287,6 @@ function mediaPreviewStatusCallback(status) {
       break;
     case 4: // stopped
       setPlaybackControlsStatus('stopped');
-      break;
     default:
       // Default fall back not needed
   }
@@ -288,6 +297,8 @@ function addOrRemoveFavorite(e) {
     // remove the favorite from the arrays
     this.favoriteIds.splice(this.favoriteIds.indexOf(this.id), 1);
     var favorites = this.favorites.filter(function(fave) {
+      console.log(this.id);
+      console.log(fave.id);
       return fave.id !== this.id;
     }, this);
     this.favorites = favorites;
@@ -325,16 +336,27 @@ function addOrRemoveFavorite(e) {
     });
   }
 }
+/**
+ *  PhoneGap Day Essentials Workshop 
+ *  
+ *  When Results Page Initializes, add the init code 
+ *  for the searchbar component and setup the click handler
+ *  for the share swipeout action.
+ */
 myApp.onPageInit('results', function(page) {
     var mySearchbar = myApp.searchbar('.searchbar', {
-        searchList: '.list-block-search',
-        searchIn: '.item-content',
+        searchList: '.media-list',
+        searchIn: '.item-content', // default is .item-title otherwise
         found: '.searchbar-found',
-        notFound: 'searchbar-not-found'
+        notFound: 'searchbar-not-found' 
+        
     })
+    
+    // Click handler for share action on swipeout 
+    // uses current data item stored via data-item attribute 
     $$(page.container).find('.share').on('click', function (e) {
         var item = page.context.tracks.items[this.dataset.item]
-
+    
         if (window.plugins && window.plugins.socialsharing) {
             window.plugins.socialsharing.share("Hey! I found this on Spotify. It's called " + item.name + ", check it out!",
                 'Check this out', item.album.images[2].url, item.preview_url,
@@ -348,7 +370,10 @@ myApp.onPageInit('results', function(page) {
         else myApp.alert("Share plugin not found");
     });
 })
+
 myApp.onPageInit('details', function(page) {
+  if (offline)
+    myApp.alert("Device is currently offline. Media playback not available.")
   var previewUrl = page.context.preview_url;
   if (typeof Media !== 'undefined') {
     // Create media object on page load so as to let it start buffering right

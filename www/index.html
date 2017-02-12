@@ -11,7 +11,12 @@
         * Enable inline JS: add 'unsafe-inline' to default-src
     -->
   <!-- Removing 'unsafe-eval'. If needed, I will figure out a way around it -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com 'unsafe-eval' 'unsafe-inline' ws://*; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com 'unsafe-eval' 
+  'unsafe-inline' ws://localhost:3000; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
+
+   <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">-->
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com 'unsafe-eval' 'unsafe-inline' ws://localhost:3000; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
 
   <!-- Required meta tags-->
   <meta charset="utf-8">
@@ -25,7 +30,7 @@
   <title>Star Track</title>
 </head>
 
-<body class="theme-green layout-dark">
+<body class="layout-dark  theme-green">
   <!-- Status bar overlay for full screen mode (PhoneGap) -->
   <div class="statusbar-overlay"></div>
 
@@ -71,12 +76,13 @@
           </div>
           <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
           <div class="center sliding">Search</div>
-          <!-- Workshop - Add right navbar icon -->
-          <div class="right">
-              <!--
-                  Right icon indicates network connection
-              -->
-              <a href="#" class="icon-only"><i class="fa fa-wifi"></i></a>
+          <!-- PhoneGap Supercharge Workshop -->
+          <!-- Add wifi icon to right navbar -->
+          <div class="right">            
+            <!--
+              Right link contains only icon - additional "icon-only" class              
+            -->
+            <a href="#" class="icon-only"><i class="fa fa-wifi"></i></a>
           </div>
         </div>
       </div>
@@ -94,8 +100,7 @@
                     <div class="item-content">
                       <div class="item-inner">
                         <div class="item-input">
-                          <input type="text" name="q"
-                            placeholder="track, artist or album"
+                          <input name="q" type="text" placeholder="track, artist or album"
                             autocorrect="off" autocapitalize="off">
                         </div>
                       </div>
@@ -192,58 +197,58 @@
         </div>
         {{/if}}
 
-        <!-- Workshop - add searchbar -->
+        <!-- PhoneGap Day Essentials Workshop -->
+        <!-- Add Search Bar -->
         <form class="searchbar">
-              <div class="searchbar-input">
-                  <input type="search" placeholder="Search">
-                  <a href="#" class="searchbar-clear"></a>
-              </div>
+            <div class="searchbar-input">
+                <input type="search" placeholder="Search">
+                <a href="#" class="searchbar-clear"></a>
+            </div>            
         </form>
 
-        <!-- Workshop - add searchbar-not-found -->
         <div class="content-block searchbar-not-found">
-                No matches found
+               Nothing found
         </div>
-
-        <!-- Workshop - add searchbar-overlay -->
+        
+        <!-- Search Bar overlay-->
         <div class="searchbar-overlay"></div>
-
         <div class="page-content">
           <div class="content-block-title">{{tracks.count}} tracks returned</div>
-          <!-- Workshop - add searchbar-found class to media list -->
           <div class="list-block media-list list-block-search searchbar-found">
-            <ul>
+             <ul>
               {{#each tracks.items}}
+              <!-- PhoneGap Day Essentials Workshop -->
+              <!-- Add Swipeout -->
               <li class="swipeout">
                 <div class="swipeout-content">
-                  <a href="#" class="item-link item-content"
+                    <a href="#" class="item-link item-content"
                     data-item="{{@index}}"
                     data-context="{{stringify this}}"
                     data-template="details">
                     <div class="item-media">
-                      <!-- Workshop - Add lazy loading -->
-                      <img width="80" data-src="{{this.album.images[0].url}}" class="lazy">
+                        <img width="80" src="{{this.album.images[0].url}}">
                     </div>
                     <div class="item-inner">
-                      <div class="item-title-row">
+                        <div class="item-title-row">
                         <div class="item-title">{{this.name}}</div>
                         <div class="item-after">{{durationFromMs this.duration_ms}}</div>
-                      </div>
-                      <div class="item-subtitle">{{this.artists[0].name}}</div>
-                      <div class="item-text">{{this.album.name}}</div>
+                        </div>
+                        <div class="item-subtitle">{{this.artists[0].name}}</div>
+                        <div class="item-text">{{this.album.name}}</div>
                     </div>
-                  </a>
-              </div>
-              <!-- Swipeout actions right -->
-             <div class="swipeout-actions-right">
-                 <!-- Swipeout actions links/buttons -->
-                 <a href="#" class="share" data-item="{{@index}}">
-                 {{#if @global.material}}
-                     <i class="icon fa fa-share-alt fa-3x"></i></a>
-                 {{else}}
-                     <i class="icon fa fa-share fa-3x"></i></a>
-                 {{/if}}
-             </div>
+                    </a>
+                </div>  
+                <!-- PhoneGap Day Essentials Workshop -->               
+                <!-- Add Swipeout action on right -->                
+                <div class="swipeout-actions-right">
+                    <!-- Swipeout actions links/buttons -->
+                    <a href="#" class="share" data-item="{{@index}}">
+                    {{#if @global.material}} 
+                        <i class="icon fa fa-share-alt fa-3x"></i></a>
+                    {{else}}
+                        <i class="icon fa fa-share fa-3x"></i></a> 
+                    {{/if}}                      
+                </div>
               </li>
               {{/each}}
             </ul>
@@ -294,7 +299,7 @@
         <div class="page-content">
           <div class="card">
             <div class="card-header no-border no-padding">
-              <img data-src="{{this.album.images[0].url}}" width="100%" class="lazy"/>
+              <img src="{{this.album.images[0].url}}" width="100%" />
             </div>
             <div class="card-content">
               <div class="card-content-inner">
@@ -368,7 +373,7 @@
                   data-context="{{stringify this}}"
                   data-template="details"
                 >
-                  <div class="item-media">
+                  <div class="item-media">                    
                     <img width="80" data-src="{{this.album.images[0].url}}" class="lazy">
                   </div>
                   <div class="item-inner">

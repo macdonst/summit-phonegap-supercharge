@@ -21,26 +21,38 @@ body {
 }
 
 /*
-   statusbar-overlay sets the background color for the overlay. Black text is the default when the statusbar plugin is not added. When the
-   statusbar plugin is added, it also adds default setting to make the content white via:
+   statusbar-overlay sets the background color for the overlay. Black text (light background) is the default when 
+   the statusbar plugin is *NOT* added. 
+   
+   When the statusbar plugin is added, it also adds a default setting to make the text white for the iOS platform via:
 
      <preference name="StatusBarStyle" value="lightcontent"/>
-
-   Setting the background color to black will allow the default light content (white text/icons) to show on it. The statusbar plugin is included
-   in the config.xml file and will be added by the CLI when you build locally.
+     
+   Though it can be overridden to black text by adding the following to config.xml 
+     <preference name="StatusBarStyle" value="default"/>
+   
+   Setting the status bar background color to a dark color will allow the default light content (white text/icons) 
+   to show on it. 
+   The statusbar plugin is included in the config.xml file and will be added by the CLI when you build locally.
 
    See https://github.com/apache/cordova-plugin-statusbar
+   
+   You will still need to set the color of the statusbar-overlay class below when using Framework7 to the background color
+   you desire.
+   
+   Review:
+   <preference name="StatusBarStyle" value="lightcontent"/>  White text (set a darker color for statusbar-overlay)
+   <preference name="StatusBarStyle" value="default"/>  Black text (set a lighter color for statusbar-overlay) 
 */
 
-/*.statusbar-overlay {
-  background: rgb(247, 247, 248);
-}*/
-/* Use for light background apps */
+/* Use for dark bckground apps */
 .statusbar-overlay {
   background: rgb(0, 0, 0);
 }
-
-
+/* Use for light bckground apps */
+/*.statusbar-overlay {
+  background: rgb(247, 247, 248);
+}*/
 .material .page .page-content .content-block-title:first-of-type,
 .material .page .page-content .card:first-of-type,
 .material .page .page-content .content-block:first-of-type {
