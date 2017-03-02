@@ -40,7 +40,7 @@ that version. To check simply run the command `phonegap -v`.
 
     The above command will create a basic project with a default name and id. If you would like to specifically set the name and id, use the following command with your desired parameters:
 
-        phonegap create myStarTrack --template phonegap-app-star-track  --name "My Star Track" --id com.mycompany.startrack
+        phonegap create myStarTrack --template  https://github.com/macdonst/summit-phonegap-essentials  --name "My Star Track" --id com.mycompany.startrack
 
 3. By the end of this step you should have two folders in your working directory:
 
