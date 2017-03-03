@@ -16,7 +16,7 @@ In this module, I’ll explain how you can track what your users are doing in yo
 ## Steps
 1. Before proceeding, you’ll first need to add the Device Plugin to your project since it is not yet used in the Star Track base app template. Open your terminal and use the PhoneGap CLI to add it now (the `--save` parameter will save the plugin to your `config.xml` file):
 
-    phonegap plugin add cordova-plugin-device --save
+        phonegap plugin add cordova-plugin-device --save
 
 2. [Download](https://raw.githubusercontent.com/keen/keen-js/master/dist/keen.min.js) the latest version of the Keen IO JavaScript library and move it into the `www/js` folder of your PhoneGap project folder.
 

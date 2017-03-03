@@ -1,62 +1,83 @@
 ---
 layout: module
-title: Module 6&#58; Add Native Share Feature
+title: Module 6&#58; Using Hooks
 ---
-In this module we'll learn how to share a media item with a friend through messaging, email etc using the device's native sharing features.
+In this module we'll learn how to use hooks to manipulate the native Android or iOS project. Cordova Hooks represent special scripts which could be added by application and plugin developers or even by your own build system to customize cordova commands.
 
-<img class="screenshot-sm" src="images/ios-share.png"/>
-<img class="screenshot-sm" src="images/android-share.png"/>
-
-## Requirements
-Before you can add code to support this feature, you'll first need to add the [Social Sharing Plugin](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
-to your project since it is not yet used in the Star Track base app template.
-
-1. Open your terminal and use the PhoneGap CLI to add it now (the `--save` parameter will save the plugin to your `config.xml` file):
-
-       phonegap plugin add cordova-plugin-x-socialsharing --save
-
->Be sure to visit the [Social Sharing Plugin Docs](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
-to learn about any platform quirks and more things you can do with this plugin. This plugin and many other
-great plugins were written by Eddy Verbruggen and can be found on his [GitHub repo](https://github.com/EddyVerbruggen).  
-
+Hooks might be related to your application activities such as such as `before_build`, `after_build`, etc. Or, they might be related to the plugins of your application. For example, hooks such as `before_plugin_add`, `after_plugin_add`, etc applies to plugin related activities. These hooks can be associated with all plugins within your application or be specific to only one plugin.
 
 ## Steps
-Prior to this step we added a `swipeout` action to the results view with a share button though it doesn't actually do anything yet.
-In this module we'll add event handling to this button to trigger the Social Sharing plugin functions.
+1. Open a new terminal window.
 
-1. Open `www/js/my-app.js` and locate the page init event handler for the *results* page (`myApp.onPageInit('results')...`).
-<br>
-2. Add the following code to handle when a user clicks the *share* button on the swipeout. You can add it just after the  `searchbar` init handling:
+2. In the root project folder create a new folder call `scripts`
 
-        $$(page.container).find('.share').on('click', function (e) {
-            var item = page.context.tracks.items[this.dataset.item]
+        mkdir scripts
 
-            if (window.plugins && window.plugins.socialsharing) {
-                window.plugins.socialsharing.share("Hey! I found this on Spotify. It's called " + item.name + ", check it out!",
-                    'Check this out', item.album.images[2].url, item.preview_url,
-                    function () {
-                        console.log("Share Success")
-                    },
-                    function (error) {
-                        console.log("Share fail " + error)
-                    });
-            }
-            else myApp.alert("Share plugin not found");
-        });
+3. Create a new file called `deletejunk.js` and copy the following code into the file:
 
-## Try it!
-Try out the button now to make sure you see the share features for your native device (or a message stating the plugin is
-not supported). Remember, this is a 3rd party plugin so you can only test this feature if you're running from the CLI locally.
+        module.exports = function(context) {
+          /*
+           * Remove junk files from the project before build so they don't get compiled
+           * into the application, preventing unwanted bloat.
+           */
 
-  It should look something like below when you run it on iOS:
+          var fs = require("fs");
+          var path = require("path");
 
-  <img class="screenshot-sm" src="images/ios-swipeout.png"/>
-  <img class="screenshot-sm" src="images/ios-share.png"/>
-  <br><br>
-  <img class="screenshot-sm" src="images/android-swipeout.png"/>
-  <img class="screenshot-sm" src="images/android-share.png"/>
+          // All directories in the www path that you want scanned for junk
+          var foldersToProcess = [
+              ".",
+              "js",
+              "css"
+          ];
 
-  >The options shown in the share menu will depend on your particular devices' native sharing options.
+          // An array of files that you consider junk and want removed
+          var junkFileList = [
+              ".DS_Store",
+              "Thumbs.db"
+          ]
+
+          foldersToProcess.forEach(function(folder) {
+              processFiles("www/" + folder);
+          });
+
+          function processFiles(dir) {
+              console.log("Scanning directory for junk...");
+              fs.readdir(dir, function(err, list) {
+                  if(err) {
+                      console.log("File processing error " + err);
+                      return;
+                  }
+                  list.forEach(function(file) {
+                      file = dir + "/" + file;
+                      fs.stat(file, function(err, stat) {
+                          if(!stat.isDirectory()) {
+                              if(junkFileList.indexOf(path.basename(file)) === 0) {
+                                  fs.unlink(file, function(error) {
+                                      console.log("Removed file " + file);
+                                  });
+                              } else {
+                                  console.log("Skipping file " + file);
+                              }
+                          }
+                      });
+                  });
+              });
+          }
+        }
+
+
+4. Add the hook to the `config.xml` file anywhere inside the `widget` tag so it is run when you build your app:
+
+        <hook type="before_prepare" src="scripts/deletejunk.js"/>
+
+5. Try building your app:
+
+        phonegap build browser
+
+   Now anything filenames you add into the `junkFileList` will be removed from the `www` folder.
+
+>To learn more about hooks check out the [hooks documentation](https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/) on the Apache Cordova site.
 
 
 <div class="row" style="margin-top:40px;">
