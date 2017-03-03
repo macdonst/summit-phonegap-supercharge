@@ -1,84 +1,122 @@
 ---
 layout: module
-title: Module 5&#58; Add Swipeout Handling
+title: Module 5&#58; Adding Analytics
 ---
 
 ### Overview
-In this step we'll add a common mobile UX feature to our app to make it more useful; swipeouts. Swipeouts
-allow you to swipe left or right over list elements to reveal further actions.
+When you’re building apps it’s important to have an understanding of how your users are behaving. This will help you identify areas of friction and come up with ideas and tests for improvement. It’s a good idea to answer questions like:
 
-The iOS Reminders app is a good example of an app using swipeouts:
+* Which features of your app do people use most?
+* When are your users most active?
+* What does the conversion funnel look like from signup to paying customer?
+* Where are people dropping off?
 
-   <img class="screenshot-md2" src="images/remind2.png"/>
+In this module, I’ll explain how you can track what your users are doing in your PhoneGap Application using [Keen IO](http://keen.io/).
 
 ## Steps
-1. Take a moment to review the [Framework7 Swipeout Docs](http://framework7.io/docs/swipeout.html)
+1. Before proceeding, you’ll first need to add the Device Plugin to your project since it is not yet used in the Star Track base app template. Open your terminal and use the PhoneGap CLI to add it now (the `--save` parameter will save the plugin to your `config.xml` file):
 
-1. Open `index.html`, locate the `results` template and within the list, add the `swipeout` class to the existing `<li>` tag
-such as:
+    phonegap plugin add cordova-plugin-device --save
 
-      `<li class="swipeout">`
+2. [Download](https://raw.githubusercontent.com/keen/keen-js/master/dist/keen.min.js) the latest version of the Keen IO JavaScript library and move it into the `www/js` folder of your PhoneGap project folder.
 
-2. Now add a new `<div>` element with the class of `swipeout-content` just below the `<li>`
-and ending `</div>` just before the <`/li`>
-{% raw %}
-        <div class="swipeout-content">
-        <ul>
-            {{#each tracks.items}}
-            <!-- Workshop - add swipeout-->
-            <li class="swipeout">
-            <div class="swipeout-content">
-                <a href="#" class="item-link item-content"
-                data-item="{{@index}}"
-                data-context="{{stringify this}}"
-                data-template="details">
-                <div class="item-media">
-                    <img width="80" src="{{this.album.images[0].url}}">
-                </div>
-                <div class="item-inner">
-                    <div class="item-title-row">
-                    <div class="item-title">{{this.name}}</div>
-                    <div class="item-after">{{durationFromMs this.duration_ms}}</div>
-                    </div>
-                    <div class="item-subtitle">{{this.artists[0].name}}</div>
-                    <div class="item-text">{{this.album.name}}</div>
-                </div>
-                </a>
-            </div>
-            </li>
-            {{/each}}
-        </ul>
-    {% endraw %}
+3. Include the Keen IO library as part of the project. Open up `www/index.html` and add the following line just after the index.js file gets loaded:
 
-2. Add the following snippet just before the closing `</li>`. This code will create the action itself
-with a link containing a `share` class that we'll listen to for clicks(taps) and pass along the index of the
-item clicked. It also sets a different share icon based on the platform.
- {% raw %}
-                <!-- Swipeout actions right -->                
-                <div class="swipeout-actions-right">
-                    <!-- Swipeout actions links/buttons -->
-                    <a href="#" class="share" data-item="{{@index}}">
-                    {{#if @global.material}}
-                        <i class="icon fa fa-share-alt fa-3x"></i></a>
-                    {{else}}
-                        <i class="icon fa fa-share fa-3x"></i></a>
-                    {{/if}}                      
-                </div>
+            <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="lib/MSOpenTech/winstore-jscompat.js"></script>
+            <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+            <script type="text/javascript" src="js/init-styles.js"></script>
+            <script type="text/javascript" src="js/my-app.js"></script>
+            <script type="text/javascript" src="js/keen.min.js"></script>
 
+4. You will also need to include a number of urls in the Content Security Policy. In `www/index.html` find the tag that starts with:
 
+{%raw%}
+            <meta http-equiv="Content-Security-Policy"
+            content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com 'unsafe-eval' 'unsafe-inline' ws://localhost:3000; style-src 'self' 'unsafe-inline'; media-src *; img-src * data:">
+{%endraw%}
 
-     {% endraw %}
+   and replace it with this one:
 
-2. In the above definition we have an icon which acts as a button in the `swipeout-actions-right`
-but it doesn't actually do anything yet. It requires click handling code to invoke a *share* feature
-that will be added in the next lesson.
+{%raw%}
+           <meta http-equiv="Content-Security-Policy"
+           content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com https://www.google.com/jsapi https://www.google.com https://api.keen.io 'unsafe-eval' 'unsafe-inline' ws://localhost:3000; style-src 'self' 'unsafe-inline' https://www.google.com; media-src *; img-src * data:">
+{%endraw%}
 
-4. Run your app to ensure you see the new swipeout action on the right side when you swipe on a list item.
+5. Now open the `www/js/my-app.js` file and add the following variable declaration to the top of the file under the `isIos` and `isMaterial` handling. This will allow us to register event listeners that report back to the analytics service.
 
-    <img class="screenshot-md2" src="images/ios-swipeout.png"/>
-    <img class="screenshot-md2" src="images/android-swipeout.png"/>  
+                var keenClient = null;
 
-   >IMPORTANT: Based on the Framework7 docs, the swipeout support will not work well in the browser so you should test this feature via the PhoneGap Developer App or the CLI locally.
+6. Initialize the Keen.io client by adding the following code to the `deviceready()` function :
+
+                keenClient = new Keen({
+                  projectId: "Your_ProjectID",
+                  readKey: "Your_ReadKey",
+                  writeKey: "Your_WriteKey"
+                });
+
+   The Keen API keys will be provided for you in the workshop but you can grab your Keen API keys from your Keen IO project page after you create an account. After adding in your keys, you should have a fancy new client object ready to send and read data from Keen IO.
+
+7. Now let's track the search event in our app. To accomplish this we'll add some code into the `searchSubmit(e)` function.
+
+                var eventData = {
+                  query: formData.q,
+                  device: device
+                };
+                keenClient.client.addEvent("clicks", eventData, function(err, res) {
+                  if (err) {
+                    console.log("Error: " + err);
+                  }
+                  else {
+                    console.log("Event sent.");
+                  }
+                });
+
+   Now we are collecting all the clicks of the search button. Whenever someone does a search, you will see the new event appear in the “button clicks” collection inside the Keen IO project along with it’s associated properties.
+
+   Right now, we are just logging the search query and the device information on every click event. The event data looks something like this:
+
+                {
+                  "query": "Foo Fighters",
+                  "device": {
+                    "available": true,
+                    "uuid": "99195ABC-C79B-4DF3-9620-C38CD087617A",
+                    "platform": "iOS",
+                    "version": "8.4",
+                    "model": "iPhone7,2",
+                    "cordova": "3.6.3"
+                  },
+                  "keen": {
+                    "timestamp": "2015-08-07T00:15:43.023Z",
+                    "created_at": "2015-08-07T00:15:43.023Z",
+                    "id": "55c3f8af6f31a205660b5172"
+                  }
+                }
+
+8. Now let's analyze the data you’re sending. In this example, we can display the number of searches today by running a simple queries. We are not going to modify our app in this case but we can inspect the app and run Javascript using it's context.
+
+   Right mouse click in your web browser window and select `Console`. Paste in the following code to setup our query:
+
+                var count = new Keen.Query("count", {
+                       eventCollection: "clicks",
+                       timeframe: "this_1_days",
+                       interval: "daily"
+                   });
+
+   Then run the query by pasting in this code:
+
+                 keenClient.run(count, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            console.log(response.result[0].value);
+                        }
+                    });
+
+   The `run` function will return an object that represents the state of the query but the next line will be the total amounts of time that the Search button has been used today.
+
+This was a very simple example of how you can use Keen’s JavaScript library to easily gather data on how your users are interacting with your PhoneGap app and gain some great insights on where you can improve. Once you’re collecting your own important events, you can analyze all of it via [Keen IO’s data explorer](https://keen.io/blog/114588771746/introducing-data-explorer) or you can programmatically run queries and embed the results and charts anywhere using [Keen’s JavaScript library](https://keen.io/docs/api/?javascript#events).
 
 <div class="row" style="margin-top:40px;">
 <div class="col-sm-12">
