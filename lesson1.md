@@ -34,9 +34,9 @@ that version. To check simply run the command `phonegap -v`.
 
 1. `cd` back into the root of the working directory (`~/summit/`)
 
-2. Create a new PhoneGap project using the PhoneGap CLI and passing the name of the starter *Star Track* PhoneGap template.
+2. Create a new PhoneGap project using the PhoneGap CLI and passing the name of the starter *Star Track Essentials* PhoneGap template.
 
-        phonegap create myStarTrack --template https://github.com/macdonst/summit-phonegap-supercharge      
+        phonegap create myStarTrack --template https://github.com/macdonst/summit-phonegap-essentials      
 
     The above command will create a basic project with a default name and id. If you would like to specifically set the name and id, use the following command with your desired parameters:
 
