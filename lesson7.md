@@ -14,6 +14,13 @@ doesn't always match what you produce in reality.
 
 Luckily, some very intelligent folks who are way better at design have already done the hard work and developed some excellent frameworks we can pick up and use. Let's investigate a few of them.
 
+All of the frameworks below follow the Single Page Architecture (SPA) best practice. Using the SPA paradigm results in the following advantages:
+
+* Faster page loading times; most resources (HTML+CSS+Scripts) are only loaded once throughout the lifespan of application. Only data is transmitted back and forth.
+* Improved user experience because the data is loading in the background from the server
+* Decoupling of front-end and back-end development
+* Simplified mobile development; you can reuse the same backend for web application and native mobile application
+
 ## Frameworks
 
 ### Ionic
