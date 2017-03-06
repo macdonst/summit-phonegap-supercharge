@@ -54,6 +54,7 @@ and add the following function to the end of the file:
         $$(document).on('deviceready', function deviceIsReady() {
           console.log('Device is ready!');
           setupPush();
+          …
         });
 
 3. Next refresh the application by using the [four finger tap gesture](http://docs.phonegap.com/references/developer-app/gestures/). Once your app reloads, if this is the first time you are requesting the ability to receive push notifications on iOS you will see the following dialog. Please click the `OK` button.
