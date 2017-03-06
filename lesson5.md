@@ -4,14 +4,14 @@ title: Module 5&#58; Adding Analytics
 ---
 
 ### Overview
-When you’re building apps it’s important to have an understanding of how your users are behaving. This will help you identify areas of friction and come up with ideas and tests for improvement. It’s a good idea to answer questions like:
+When you’re building apps it’s important to have an understanding of how your users are behaving. This will help you identify areas of friction, come up with ideas and tests for improvement. It’s a good idea to answer questions like:
 
 * Which features of your app do people use most?
 * When are your users most active?
 * What does the conversion funnel look like from signup to paying customer?
 * Where are people dropping off?
 
-In this module, I’ll explain how you can track what your users are doing in your PhoneGap Application using [Keen IO](http://keen.io/).
+In this module, we’ll explain how you can track what your users are doing in your PhoneGap Application using [Keen IO](http://keen.io/).
 
 ## Requirements
 Before you can code this feature, you'll first need to add the [Cordova Device Plugin](https://github.com/apache/cordova-plugin-device) to your project since it is not yet used in the Star Track base app template.
@@ -26,7 +26,7 @@ Before you can code this feature, you'll first need to add the [Cordova Device P
 
 1. [Download](https://raw.githubusercontent.com/keen/keen-js/master/dist/keen.min.js) the latest version of the Keen IO JavaScript library and move it into the `www/js` folder of your PhoneGap project folder.
 
-2. Include the Keen IO library as part of the project. Open up `www/index.html` and add the following line just after the index.js file gets loaded:
+2. Include the Keen IO library as part of the project. Open up `www/index.html` and add the following line just after the `my-app.js` file gets loaded:
 
             <script type="text/javascript" src="cordova.js"></script>
             <script type="text/javascript" src="lib/MSOpenTech/winstore-jscompat.js"></script>
@@ -48,6 +48,9 @@ Before you can code this feature, you'll first need to add the [Cordova Device P
            <meta http-equiv="Content-Security-Policy"
            content="default-src 'self' data: gap: https://ssl.gstatic.com https://api.spotify.com https://www.google.com/jsapi https://www.google.com https://api.keen.io 'unsafe-eval' 'unsafe-inline' ws://localhost:3000; style-src 'self' 'unsafe-inline' https://www.google.com; media-src *; img-src * data:">
 {%endraw%}
+
+    >The Content-Security-Policy HTTP response header helps you reduce XSS risks on modern browsers by declaring what dynamic resources are allowed to load via a HTTP Header learn more at [https://content-security-policy.com/](https://content-security-policy.com/).
+
 
 4. Now open the `www/js/my-app.js` file and add the following variable declaration to the top of the file under the `isIos` and `isMaterial` handling. This will allow us to register event listeners that report back to the analytics service.
 
