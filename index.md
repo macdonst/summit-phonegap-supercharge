@@ -24,6 +24,10 @@ GitHub repo [here](https://github.com/macdonst/summit-phonegap-supercharge).
 We will be using PhoneGap, [Framework7](http://framework7.io) and the [Font Awesome Icon Font library](http://fortawesome.github.io/Font-Awesome/)
  to help us build this app. The following plugins are also used in the final version.
 
+      <plugin name-"phonegap-plugin-push" spec="~1.9.0" />
+      <plugin name-"cordova-plugin-dialogs" spec="~1.9.0" />
+      <plugin name-"cordova-plugin-device" spec="~1.9.0" />
+
       <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
       <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
       <plugin name="cordova-plugin-media" spec="~1.0.1" />

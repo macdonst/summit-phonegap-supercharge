@@ -36,7 +36,7 @@ that version. To check simply run the command `phonegap -v`.
 
 2. Create a new PhoneGap project using the PhoneGap CLI and passing the name of the starter *Star Track* PhoneGap template.
 
-        phonegap create myStarTrack --template phonegap-app-star-track      
+        phonegap create myStarTrack --template https://github.com/macdonst/summit-phonegap-supercharge      
 
     The above command will create a basic project with a default name and id. If you would like to specifically set the name and id, use the following command with your desired parameters:
 

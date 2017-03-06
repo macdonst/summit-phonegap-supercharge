@@ -4,7 +4,7 @@ title: Module 6&#58; Using Hooks
 ---
 In this module we'll learn how to use hooks to manipulate the native Android or iOS project. Cordova Hooks represent special scripts which could be added by application and plugin developers or even by your own build system to customize cordova commands.
 
-Hooks might be related to your application activities such as such as `before_build`, `after_build`, etc. Or, they might be related to the plugins of your application. For example, hooks such as `before_plugin_add`, `after_plugin_add`, etc applies to plugin related activities. These hooks can be associated with all plugins within your application or be specific to only one plugin.
+Hooks might be related to your application activities such as such as `before_build`, `after_build`, etc. Or, they might be related to the plugins of your application. For example, hooks such as `before_plugin_add`, `after_plugin_add`, etc applies to plugin related activities. For a full list of the available hook triggers read the [hooks documentation](https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/). These hooks can be associated with all your entire app, a single platform in your app or be specific to only one plugin.
 
 ## Steps
 1. Open a new terminal window.

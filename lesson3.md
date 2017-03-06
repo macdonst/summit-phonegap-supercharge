@@ -6,6 +6,15 @@ title: Module 3&#58; Push Notifications - Handling your first notification
 ### Overview
 Now that we have a registration ID we are now ready to receive our push notification in our app. In this case we'll setup our application to show a dialog when a push notification is received.
 
+## Requirements
+Before you can code this feature, you'll first need to add the [Cordova Dialogs Plugin](https://github.com/apache/cordova-plugin-dialogs) to your project since it is not yet used in the Star Track base app template.
+
+1. Open your terminal and use the PhoneGap CLI to add it now (the `--save` parameter will save the plugin to your `config.xml` file):
+
+       phonegap plugin add cordova-plugin-dialogs --save
+
+   >Be sure to visit the [Cordova Dialogs Plugin Docs](https://github.com/apache/cordova-plugin-dialogs) to learn about any platform quirks and more things you can do with this plugin.
+
 ## Steps
 1. Open **www/js/my-app.js** and add the following code after the push error handler in `setupPush`:
 

@@ -16,7 +16,7 @@ Luckily, some very intelligent folks who are way better at design have already d
 
 ## Frameworks
 
-### Ionic 
+### Ionic
 
 <img class="screenshot-md" src="images/ionic.png"/>
 
@@ -26,14 +26,13 @@ Ionic is an open-source SDK for hybrid mobile app development. Built on top of A
 
 **Pros**
 
-* Enables you to utilize a single command for performing actions like creating, developing, testing and deploying your application on to a specific mobile platform.
-* The framework is backed by a huge community.
-* Ionic contains a powerful CLI with tons of features.
-* Is continuously updated according to the latest trends, which helps in creating an app that addresses the need of new generation users.
+* Provides iOS, Android and Windows themes.
+* The framework is backed by a huge community with over 28,000 stars on Github.
+* Ionic contains a powerful CLI with tons of features which wraps the Apache Cordova CLI for packaging native apps.
 
 **Cons**
 
-* To build complex hybrid apps, you'll have to use AngularJS. The problem is: not all the developers are familiar with AngularJS. Moreover, the steep learning curve of AngularJS makes it challenging for novice developers to use Ionic
+* The framework is very opinionated and forces you to use Typekit and Angular2.
 
 ### Onsen
 
@@ -45,13 +44,14 @@ Onsen UI is an open-source UI framework and components for HTML5 hybrid mobile a
 
 **Pros**
 
+* Provides iOS and Android themes.
 * Developers are given multiple options when including UI components into an app.
-* It features a plethora of ready-to-use and responsive components, enabling you to build hybrid apps for Smartphones, tablets and desktop devices.
-* Help write applications using HTML5 and JS web technologies, and help those apps deliver native-like experience by utilizing Cordova (and Phonegap) tool.
+* Onsen provides a CLI and web tools which wraps the Apache Cordova CLI for packaging native apps.
 
 **Cons**
 
-* The framework limits developers to use the Onsen UI framework features. That's because, developers can't use the features unless they make use of Onsen UI's HTML-based IDE.
+* With so many options of how to include the UI components it is difficult knowing where to start.
+* Some of framework features can't be used unless you make use of Onsen UI's HTML-based IDE.
 
 ### Framework7
 
@@ -63,12 +63,14 @@ Framework7 is an open source mobile HTML framework to develop hybrid mobile apps
 
 **Pros**
 
-* Is the most feature-rich framework for developing hybrid apps for iOS platform, and comes bundled with dozens of UI widgets and elements like popover, side panels, popup, media lists, etc.
-* It helps in creating native like applications featuring animations and styled components, without having to use complex Angular or React frameworks. 
- 
+* Provides iOS and Android themes.
+* Two options for including web components a jQuery like API for developers familiar with that style of JavaScript coding and a reactive API based on Vue.js.
+* Lack of strong opinion makes it easier to insert into your existing workflow.
+* Popular framework with over 9,000 stars on Github.
+
 **Cons**
 
-* It does not include mobile app builders such as PhoneGap or Apachd Cordova.
+* It does not include mobile app builders such as PhoneGap or Apache Cordova.
 
 <div class="row" style="margin-top:40px;">
 <div class="col-sm-12">

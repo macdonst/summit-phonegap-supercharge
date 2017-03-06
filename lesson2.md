@@ -4,7 +4,16 @@ title: Module 2&#58; Push Notifications - Obtaining a Registration ID
 ---
 
 ### Overview
-In order for your device to receive push notifications you will need to receive a registration ID from the remote push service be it Google Cloud Messaging (GCM) or Apple Push Notification Service (APNS). We'll learn how to register for push and report that registration ID back to our application server.
+In order for your device to receive push notifications you will need to receive a registration ID from the remote push service be it Google Cloud Messaging (GCM), Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS). We'll learn how to register for push and report that registration ID back to our application server.
+
+## Requirements
+Before you can code this feature, you'll first need to add the [PhoneGap Push Plugin](https://github.com/phonegap/phonegap-plugin-push) to your project since it is not yet used in the Star Track base app template.
+
+1. Open your terminal and use the PhoneGap CLI to add it now (the `--save` parameter will save the plugin to your `config.xml` file):
+
+       phonegap plugin add phonegap-plugin-push --variable SENDER_ID=XXXXXXXX --save
+
+   >Be sure to visit the [PhoneGap Push Plugin Docs](https://github.com/phonegap/phonegap-plugin-push) to learn about any platform quirks and more things you can do with this plugin.
 
 ## Steps
 1. Initialize the PushNotification plugin and register an event handler for a `registration` event. Open the **www/js/my-app.js** file
