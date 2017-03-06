@@ -25,9 +25,9 @@ We will be using PhoneGap, [Framework7](http://framework7.io) and the [Font Awes
  to help us build this app. The following plugins are also used in the final version.
 
       <plugin name-"phonegap-plugin-push" spec="~1.9.0" />
-      <plugin name-"cordova-plugin-dialogs" spec="~1.9.0" />
-      <plugin name-"cordova-plugin-device" spec="~1.9.0" />
-
+      <plugin name-"cordova-plugin-dialogs" spec="~1.3.0" />
+      <plugin name-"cordova-plugin-device" spec="~1.1.0" />
+      <!-- previously installed -->
       <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
       <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
       <plugin name="cordova-plugin-media" spec="~1.0.1" />
@@ -37,11 +37,12 @@ We will be using PhoneGap, [Framework7](http://framework7.io) and the [Font Awes
 
 
 ## What You Will Learn
-- Common mobile app development paradigms (navigation, view stacks, routing) and how to implement them using Framework7.
-- How to use PhoneGap plugins in your mobile apps to play media, detect offline status and use native sharing.
-- How to interact with the [Spotify API](https://developer.spotify.com/web-api/) to retrieve data.
-- Tips on handling specific mobile challenges to make your apps feel native and perform well.
-- How to configure your apps (preferences, icons, whitelisting etc).
+- How to enhance your application by adding the ability to receive push notifications.
+- Understanding user behavior better with analytics.
+- Modify the native application files or running build tasks with hooks.
+- Picking a UI framework to help accelerate your app development.
+- How to interact with PhoneGap Build.
+- DEBUGGING!!!
 
 ## Requirements
 - PhoneGap CLI 6.2.3 or greater (`npm install -g phonegap`)
