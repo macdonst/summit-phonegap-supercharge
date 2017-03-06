@@ -13,7 +13,7 @@ Hooks might be related to your application activities such as such as `before_bu
 
         mkdir scripts
 
-3. Create a new file called `deletejunk.js` and copy the following code into the file:
+3. Create a new file called `scripts/deletejunk.js` and copy the following code into the file:
 
         module.exports = function(context) {
           /*
