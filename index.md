@@ -52,7 +52,7 @@ that version. To check simply run the command `phonegap -v`.
 - A working knowledge of HTML and JavaScript is assumed, but you don't need to be a JavaScript guru.
 
 >A mobile device or a Mobile SDK is **not** a requirement for this tutorial. You will able to test your application in the browser or with the
-[PhoneGap Developer App](app.developer.com) with some limitations. If you want the full support of the native APIs then you will need the mobile
+[PhoneGap Developer App](http://docs.phonegap.com/getting-started/2-install-mobile-app/) with some limitations. If you want the full support of the native APIs then you will need the mobile
 SDK for that platform (iOS SDK, Android SDK, etc.) installed on your system.
 
 ## Useful Resources
