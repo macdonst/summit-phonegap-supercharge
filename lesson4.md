@@ -9,7 +9,7 @@ Now that we have an app that is able to receive push notifications we have to ha
 ## Steps
 1. Open a new terminal window.
 
-2. If you are on Android device or browser you will run the following command to send your test push:
+2. If you are on Android device or browser you will run the following command to send your test push replacing the device ID with the one you obtained in module 2:
 
    Mac Terminal:
 
