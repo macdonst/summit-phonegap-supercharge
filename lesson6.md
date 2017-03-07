@@ -75,7 +75,7 @@ Hooks might be related to your application activities such as such as `before_bu
 
         phonegap build browser
 
-   Now anything filenames you add into the `junkFileList` will be removed from the `www` folder.
+   Now any filenames you add into the `junkFileList` will be removed from the `www` folder.
 
 >To learn more about hooks check out the [hooks documentation](https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/) on the Apache Cordova site.
 
