@@ -72,7 +72,7 @@ Before you can code this feature, you'll first need to add the [Cordova Device P
                   query: formData.q,
                   device: device
                 };
-                keenClient.client.addEvent("clicks", eventData, function(err, res) {
+                keenClient.addEvent("clicks", eventData, function(err, res) {
                   if (err) {
                     console.log("Error: " + err);
                   }

@@ -88,7 +88,7 @@ You can remotely debug your Android applications running on your device in a sim
 
 ### Debugging Apps Running in PhoneGap Developer App
 Currently you can use the Weinre remote inspection tool for debugging your apps running on the PhoneGap Developer App on your device. A guide on
-how to use this can be found [here in our PhoneGap Docs](http://docs.phonegap.com/references/developer-app/debugging/.
+how to use this can be found [here in our PhoneGap Docs](http://docs.phonegap.com/references/developer-app/debugging/).
 
 
 ### Additional Debugging Resources:
