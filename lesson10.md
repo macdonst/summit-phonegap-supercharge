@@ -18,10 +18,6 @@ links to tools and resources that can help you further:
 ### Securing your App
 - [Tommy Williams PhoneGap Day US 2016 Workshop Slides](http://devgeeks.github.io/pixfor-vulnerable/assets/player/KeynoteDHTMLPlayer.html)
 
-### Push Notification Support
-Push notifications are a common requirement when developing mobile apps. See the links below for help implementing them in your PhoneGap apps.
-- [Simon's MacDonald's PhoneGap Day Push Notification Workshop](http://macdonst.github.io/push-workshop/)
-
 ### Plugin Development  
 There are a vast number of plugins currently available for Cordova but you still may find yourself needing a specific native feature that is not already
   supported. Learn how to write your own plugin below.
@@ -29,12 +25,12 @@ There are a vast number of plugins currently available for Cordova but you still
 - [Jesse MacFadyen's PhoneGap Day Slides](http://purplecabbage.github.io/slides/pgd16Plugins/index.html)
 
 ### App Submission (provisioning, code signing, submitting to app stores)
-- Attend **App Submission** workshop by Shazron Abdullah at 5pm today!
 - Check out this [useful guide to App Submission](https://github.com/timkim/phonegap-day-workshop-app-submission/wiki) built by the PhoneGap Team.  
 
 ### Adding Analytics
-Analytics can be used to determine how your app is being used, which features are popular and where your pain points are.  
--[Adding Analytics to your PhoneGap Apps](http://phonegap.com/blog/2015/08/18/adding-analytics-to-your-phonegap-app/)
+Analytics can be used to determine how your app is being used, which features are popular and where your pain points are. Here is a more in-depth look at using keen.io:  
+
+- [Adding Analytics to your PhoneGap Apps](http://phonegap.com/blog/2015/08/18/adding-analytics-to-your-phonegap-app/)
 
 ### Updating your App (Over the Air Updates)
 Update your apps in the iOS App Store quickly without waiting on long approval processes using over the air updates. Use the following links as potential resources:

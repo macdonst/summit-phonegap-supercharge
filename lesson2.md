@@ -9,11 +9,13 @@ In order for your device to receive push notifications you will need to receive 
 ## Requirements
 Before you can code this feature, you'll first need to add the [PhoneGap Push Plugin](https://github.com/phonegap/phonegap-plugin-push) to your project since it is not yet used in the Star Track base app template.
 
-1. Open your terminal and use the PhoneGap CLI to add it now (the `--save` parameter will save the plugin to your `config.xml` file):
+1. Open your terminal and navigate into your app. Use the PhoneGap CLI to add the plugin now (the `--save` parameter will save the plugin to your `config.xml` file):
 
        phonegap plugin add phonegap-plugin-push --variable SENDER_ID=XXXXXXXX --save
 
-   >Be sure to visit the [PhoneGap Push Plugin Docs](https://github.com/phonegap/phonegap-plugin-push) to learn about any platform quirks and more things you can do with this plugin.
+   > Be sure to visit the [PhoneGap Push Plugin Docs](https://github.com/phonegap/phonegap-plugin-push) to learn about any platform quirks and more things you can do with this plugin.
+
+ > Tip: You can view your installed plugins by typing `phonegap plugin ls` in your app directory using terminal.
 
 ## Steps
 1. Initialize the PushNotification plugin and register an event handler for a `registration` event. Open the **www/js/my-app.js** file
@@ -57,11 +59,13 @@ and add the following function to the end of the file:
           …
         });
 
-3. Next refresh the application by using the [four finger tap gesture](http://docs.phonegap.com/references/developer-app/gestures/). Once your app reloads, if this is the first time you are requesting the ability to receive push notifications on iOS you will see the following dialog. Please click the `OK` button.
+3. Next refresh the app! Do this on the PhoneGap Developer App by using the [four finger tap gesture](http://docs.phonegap.com/references/developer-app/gestures/). For the browser, just hit refresh. Once your app reloads, if this is the first time you are requesting the ability to receive push notifications on iOS you will see the following dialog. Please click the `OK` button.
     <img class="screenshot-lg" src="images/push-permission.png"/>
 
 
-   > If you are running on Android or have already given permission to the app to use push notifications then you will not see this dialog.
+   > If you are running on Android or have already given permission to the app to use push notifications then you will not see this dialog. 
+
+   > You will see some permission dialogs for the browser as well. Press allow.
 
 4. Finally, you will see the registration ID in your terminal session.
 
@@ -73,6 +77,9 @@ and add the following function to the end of the file:
 1. [Apache Cordova and Remote Debugging on Android](http://geeklearning.io/apache-cordova-and-remote-debugging-on-android/) - a quick tutorial on how to setup your phone to allow remote debugging with Chrome Web Inspector.
 2. [Debugging PhoneGap Apps with Safari's Web Inspector](http://phonegap-tips.com/articles/debugging-ios-phonegap-apps-with-safaris-web-inspector.html) - a quick tutorial on how to setup your phone to allow remote debugging with Safari Web Inspector.
 
+> We will cover remote debugging in step 9!
+
+
 
 ### Dependencies
 
@@ -80,8 +87,7 @@ and add the following function to the end of the file:
 
     $ phonegap plugin add phonegap-plugin-push --variable SENDER_ID=XXXXXXXX
 
-   >You won't need to specifically add it for this workshop as it is already included in the **PhoneGap Developer App**. If you are creating the project from scratch and using the CLI locally then use the command above.
-
+   > You won't need to specifically add it for this workshop as it is already included in the **PhoneGap Developer App**. If you are creating the project from scratch and using the CLI locally then use the command above.
 
 <div class="row" style="margin-top:40px;">
 <div class="col-sm-12">
