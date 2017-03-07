@@ -26,7 +26,7 @@ Before you can code this feature, you'll first need to add the [Cordova Device P
 
 1. [Download](https://raw.githubusercontent.com/keen/keen-js/master/dist/keen.min.js) the latest version of the Keen IO JavaScript library and move it into the `www/js` folder of your PhoneGap project folder.
 
-2. Include the Keen IO library as part of the project. Open up `www/index.html` and add the following line just after the `my-app.js` file gets loaded:
+2. Include the Keen IO library as part of the project. Open up `www/index.html` and add it just after the `my-app.js` file gets loaded:
 
             <script type="text/javascript" src="cordova.js"></script>
             <script type="text/javascript" src="lib/MSOpenTech/winstore-jscompat.js"></script>
